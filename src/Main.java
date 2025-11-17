@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -6,28 +7,40 @@ public class Main {
 
     public static void main(String[] args) {
        Scanner scanner = new Scanner(System.in);
-      userInputNumber(scanner);
-      operation(scanner);
-      userInputSecondNumber(scanner);
+     int firstNumber = userInputNumber(scanner);
+     String sign = operation(scanner);
+
+    while(!Objects.equals(sign, "+")) {
+        System.out.println("invalid operation");
+        sign = operation(scanner);
     }
-    
-    public static void userInputNumber(Scanner scanner) {
+     if (Objects.equals(sign, "+")){
+            int secondNumber = userInputSecondNumber(scanner);
+            int result = firstNumber + secondNumber;
+            System.out.println(result);
+         }
+     }
+
+    public static int userInputNumber(Scanner scanner) {
         System.out.print("Enter a number:");
-        scanner.nextInt();
-
+        return scanner.nextInt();
+        
     }
-    public static void operation(Scanner scanner) {
+    public static String operation(Scanner scanner) {
         System.out.print("Select Operation:");
-        scanner.nextInt();
+
+      return scanner.next();
 
     }
-    public static void userInputSecondNumber(Scanner scanner) {
+    public static int userInputSecondNumber(Scanner scanner) {
         System.out.print("Enter another number:");
-        scanner.nextInt();
+       return scanner.nextInt();
 
     }
+
 
 }
+
        /* System.out.print("Enter a number:");
         int firstNumber = scanner.nextInt();
         System.out.print("Operation: ");
