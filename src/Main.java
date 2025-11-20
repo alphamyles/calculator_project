@@ -1,4 +1,5 @@
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -8,6 +9,12 @@ public class Main {
      static String sign;
      static int firstNumber;
      static int secondNumber;
+     static int result1;
+     static int result2;
+     static int result3;
+     static int result4;
+
+    static  List<String> options = Arrays.asList("+","-","*","/");
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         firstNumber = userInputNumber(scanner);
@@ -16,16 +23,37 @@ public class Main {
         int a = addition();
         System.out.println(a);
         }
-        public static int addition(){
-            while (!Objects.equals(sign, "+")) {
+        public static int addition() {
+            while (!options.contains(sign)) {
                 System.out.println("invalid operation");
                 //not putting the operation in a variable causes problems
                 sign = operation(scanner);
             }
-            if (sign.equals("+"))
-                secondNumber = userInputSecondNumber(scanner);
-            return firstNumber + secondNumber;
+
+            switch (sign) {
+                case "+" -> {
+                    secondNumber = userInputSecondNumber(scanner);
+                    result1 = firstNumber + secondNumber;
+                    return result1;
+                }
+                case "-" -> {
+                    secondNumber = userInputSecondNumber(scanner);
+                    result2 = firstNumber - secondNumber;
+                }
+                case "*" -> {
+                    secondNumber = userInputSecondNumber(scanner);
+                    result3 = firstNumber * secondNumber;
+                    return result3;
+                }
+                case "/" -> {
+                    secondNumber = userInputSecondNumber(scanner);
+                    result4 = firstNumber / secondNumber;
+                }
+            }
+            return result4;
         }
+
+
         public static int userInputNumber (Scanner scanner){
             System.out.print("Enter a number:");
             return scanner.nextInt();
